@@ -1,4 +1,3 @@
-
 import java.util.LinkedList;
 
 import javax.swing.GroupLayout.SequentialGroup;
@@ -18,8 +17,8 @@ public class Piece {
     public Piece(int xp, int yp, boolean isWhite,String n, LinkedList<Piece> pieces) {
         this.xp = xp;
         this.yp = yp;
-        x = xp * 64;
-        y = yp * 64;
+        x = xp * 80;
+        y = yp * 80;
         this.isWhite = isWhite;
         this.pieces=pieces;
         name=n;
@@ -28,28 +27,28 @@ public class Piece {
     
     public void move(int xp,int yp,boolean canMove){
         if(!canMove) {
-            x = this.xp * 64;
-            y = this.yp * 64;
+            x = this.xp * 80;
+            y = this.yp * 80;
             return;
         } 
-        if(ChessGame.getPiece(xp * 64, yp * 64) != null) {
-            if(ChessGame.getPiece(this.xp * 64, this.yp * 64).name.equals("pawn") && this.xp == xp) {
-                x = this.xp * 64;
-                y = this.yp * 64;
+        if(ChessGame.getPiece(xp * 80, yp * 80) != null) {
+            if(ChessGame.getPiece(this.xp * 80, this.yp * 80).name.equals("pawn") && this.xp == xp) {
+                x = this.xp * 80;
+                y = this.yp * 80;
                 return;
             }
-            if(ChessGame.getPiece(xp * 64, yp * 64).isWhite != isWhite)
-                ChessGame.getPiece(xp * 64,yp * 64).kill();
+            if(ChessGame.getPiece(xp * 80, yp * 80).isWhite != isWhite)
+                ChessGame.getPiece(xp * 80,yp * 80).kill();
             else {
-                x = this.xp * 64;
-                y = this.yp * 64;
+                x = this.xp * 80;
+                y = this.yp * 80;
                 return;
             }
         }
         this.xp=xp;
         this.yp=yp;
-        x = xp * 64;
-        y = yp * 64;
+        x = xp * 80;
+        y = yp * 80;
         counter++;
     }
     public void kill(){
@@ -62,40 +61,40 @@ public class Piece {
             if(ChessGame.isPathObstructed(this.xp,this.yp,xp,yp))
                 return false;
         }
-        if(ChessGame.getPiece(this.xp * 64, this.yp * 64).isWhite && counter % 2 == 1) 
+        if(ChessGame.getPiece(this.xp * 80, this.yp * 80).isWhite && counter % 2 == 1) 
             return false;
-        if(!ChessGame.getPiece(this.xp * 64, this.yp * 64).isWhite && counter % 2 == 0) 
+        if(!ChessGame.getPiece(this.xp * 80, this.yp * 80).isWhite && counter % 2 == 0) 
             return false;
 
         
         if(name.equals("pawn")) {
-            if(ChessGame.getPiece(this.xp * 64, this.yp * 64).isWhite && this.yp == 6) {
+            if(ChessGame.getPiece(this.xp * 80, this.yp * 80).isWhite && this.yp == 6) {
                 if(this.yp - 2 == yp && this.xp == xp) 
                     return true;
                 
             }
-            else if(!ChessGame.getPiece(this.xp * 64, this.yp * 64).isWhite && this.yp == 1) {
+            else if(!ChessGame.getPiece(this.xp * 80, this.yp * 80).isWhite && this.yp == 1) {
                 if(this.yp + 2 == yp && this.xp == xp) 
                     return true;
             }
-            if(!ChessGame.getPiece(this.xp * 64, this.yp * 64).isWhite) {
-                if(ChessGame.getPiece(this.xp, (this.yp +1) * 64) != null)
+            if(!ChessGame.getPiece(this.xp * 80, this.yp * 80).isWhite) {
+                if(ChessGame.getPiece(this.xp, (this.yp +1) * 80) != null)
                     return false;
                 if(this.yp + 1 == yp && this.xp == xp)
                     return true;
-                if(ChessGame.getPiece((this.xp - 1) * 64, (this.yp +1) * 64) != null || ChessGame.getPiece((this.xp + 1) * 64, (this.yp +1) * 64) != null) {
+                if(ChessGame.getPiece((this.xp - 1) * 80, (this.yp +1) * 80) != null || ChessGame.getPiece((this.xp + 1) * 80, (this.yp +1) * 80) != null) {
                     if(this.yp + 1 == yp && this.xp - 1 == xp)
                         return true;
                     else if(this.yp + 1 == yp && this.xp + 1 == xp)
                         return true;
                 }
             }
-            else if(ChessGame.getPiece(this.xp * 64, this.yp * 64).isWhite) {
-                if(ChessGame.getPiece(this.xp, (this.yp - 1) * 64) != null)
+            else if(ChessGame.getPiece(this.xp * 80, this.yp * 80).isWhite) {
+                if(ChessGame.getPiece(this.xp, (this.yp - 1) * 80) != null)
                     return false;
                 if(this.yp - 1 == yp && this.xp == xp)
                     return true;
-                if(ChessGame.getPiece((this.xp - 1) * 64, (this.yp -1) * 64) != null || ChessGame.getPiece((this.xp + 1) * 64, (this.yp -1) * 64) != null) {
+                if(ChessGame.getPiece((this.xp - 1) * 80, (this.yp -1) * 80) != null || ChessGame.getPiece((this.xp + 1) * 80, (this.yp -1) * 80) != null) {
                     if(this.yp - 1 == yp && this.xp - 1 == xp)
                         return true;
                     else if(this.yp - 1 == yp && this.xp + 1 == xp)

@@ -20,7 +20,7 @@ public class ChessGame {
     public static int aX;
     public static int aY;
     public static void main(String[] args) throws IOException {
-        BufferedImage all=ImageIO.read(new File("C:\\Users\\natha\\JavaVSCode\\Projects\\Chess\\chess.png"));
+        BufferedImage all=ImageIO.read(new File("/AP2023Project/chess.png"));
         Image imgs[]=new Image[12];
         int index=0;
         for(int y=0;y<400;y+=200){
